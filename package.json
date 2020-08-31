@@ -12,5 +12,8 @@
   "repository": {
     "type": "git",
     "url": "xpeppers-sales-tax"
+  },
+  "dependencies": {
+    "prompts": "^2.3.2"
   }
 }
