@@ -1,0 +1,16 @@
+{
+  "name": "xpeppers-sales-tax",
+  "version": "1.0.0",
+  "description": "interview project for xpeppers",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Maksym Sharin",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "xpeppers-sales-tax"
+  }
+}
