@@ -1,11 +1,15 @@
-/*
+import taxPolicy from "bin/taxPolicy";
+import TaxHandler from "bin/taxHandler"
 
-let taxPolicy  //import json with tax
+let taxHandler = new TaxHandler();
+/*
 let inputString = ´""
 let basket = new Basket();
 let receipt = new Receipt();
-let taxHandler = new TaxHandler();
 
+*/
+taxHandler.setTaxPolicy( taxPolicy );
+/*
 //load taxes to apply from a policy file
 taxHandler.setTaxPolicy( taxPolicy );
 
