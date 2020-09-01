@@ -1,5 +1,10 @@
 
 function TaxHandler() {
+    //taxRate , taxedPrice , totTexes , totPrice
+    this.taxRate = 0;
+    this.taxedPrice = 0.0;
+    this.totTexes = 0.0;
+    this.totPrice = 0.0;
 
     this.parseProducts =
         function (productsString) {
@@ -8,34 +13,31 @@ function TaxHandler() {
                 productLine => {
                     this.products.push(
                         {
-                            quantity: productString.match("\\")[0],
-                            //TODO regex startString integer space
-                            name: productStrings.match("\\")[0],
-                            //TODO regex space variablechars space at
-                            price: productStrings.match("\\")[0]
-                            //TODO regex "at" space decimal 2 accuracy
+                            quantity:
+                                parseInt( productLine.match(/^(\d*)(?= .*)/g)[0] , 10 ),
+                            name:
+                                productLine.match(/(?<= )(.*)(?= at)/g)[0],
+                            price:
+                                parseFloat( productLine.match(/(?<= at )(\d+(\.\d{1,2})?)$/g)[0] )
                         }
                     );
 
                 }
-            )
-
-            //productsString
+            );
         }
 
-    this.setTaxPolicy =
-        function (taxPolicy) {
-            this.taxPolicy = taxPolicy;
-        }
+
 
     this.applyPolicies =
-        function (taxableObj) {
-            this.taxPolicy.forEach(
-                (taxFunction, index, array) => {
-                    taxFunction(taxableObj);
-                });
-
+        function (taxableObj , taxPolicy ) {
+            this.taxRate = 0;
+            this.taxedPrice = 0.0;
+            for ( let taxFunction in taxPolicy ) {
+                if ( Object.prototype.hasOwnProperty.call(taxPolicy, taxFunction ) )
+                { taxPolicy[taxFunction]( taxableObj , this ); }
+            }
         }
+
 }
 
-exports.TaxHandler = TaxHandler;
+module.exports = TaxHandler;
