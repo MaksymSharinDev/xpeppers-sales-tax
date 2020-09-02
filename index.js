@@ -1,13 +1,13 @@
 var consoleBasket = require("./bin/consoleBasket.js");
-let TaxHandler  =   require("./bin/taxHandler.js");
-let taxPolicy   =   require("./bin/taxPolicy.js") ;
-let taxHandler = new TaxHandler();
+var TaxHandler  =   require("./bin/taxHandler.js");
+var taxPolicy   =   require("./bin/taxPolicy.js") ;
+var taxHandler = new TaxHandler();
 
 
 consoleBasket.prompt(
     //hey there, following the callback hehe?
-    inputString => {
-
+    function ( inputString ) {
+        console.clear();
         let receiptString = "";
         //so now our countability guy is figuring out the products
         taxHandler.parseProducts( inputString );

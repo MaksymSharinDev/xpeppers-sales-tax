@@ -16,12 +16,10 @@ var inquirer = require('inquirer');
 
 var events = require('events');
 var eventEmitter = new events.EventEmitter();
-let lastInputs = "";
+var lastInputs = "";
 
 //The Interface loop is recursive ( inquirer it’s based on promises )
-function interfaceLoop ( callback ) {
-
-        printReceipt = callback
+function interfaceLoop ( printReceipt ) {
         let textInterface = () =>
         {
             return  "Basket\n" +
@@ -71,7 +69,6 @@ function interfaceLoop ( callback ) {
                             })
                             .catch(error => {
                                 //i know i know error handling but... it’s still a small narrow project
-                                console.log(error);
                                 if(error.isTtyError) {
                                     // Prompt couldn't be rendered in the current environment
                                 } else {
@@ -85,12 +82,8 @@ function interfaceLoop ( callback ) {
                     //where we send out of scope evil orbit the data to its promised soil
                     case "get_Receipt":
                         try{
-                        eventEmitter.emit( "basketSubmit" , lastInputs );
+                            eventEmitter.emit( "basketSubmit" , lastInputs );
                         }catch{}
-                        //why the try catch? because there is a false alarm about
-                        //printReceipt callback, because the callback is executed
-                        //but strangely "Type error: printReceipt is not a function
-                        //mysteries of javascript lol
                         break;
                 }
             })
@@ -100,11 +93,12 @@ function interfaceLoop ( callback ) {
                 } else {
                     // Something else when wrong
                 }
-                console.log(error);
+
             });
             //hey we arrived at the planet of destination
-            eventEmitter.on("basketSubmit",( productsString )=> { printReceipt( productsString )} )
+            eventEmitter.on("basketSubmit", (lastInputs)=>{ return printReceipt(lastInputs) }  )
         }
+
 
 exports.prompt = interfaceLoop
 
