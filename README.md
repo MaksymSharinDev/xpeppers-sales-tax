@@ -7,8 +7,10 @@ and  decimal.js calculations.
 
 [HERE TO JUMP AT INSTALL AND RUN](#Requirements)  
 
+![Preview](./docsMedia/preview.gif)
+<br><br>
 It was the most focus and speed intensive challenge that i ever done until now. <br>
-( joke for AppQualiy final examination Project i have the 50h awake record LOL)   
+( nah joke, for App-Qualiy final examination Project i have the 40h awake record LOL)   
  
 my Process:
 - ***2 day relaxed sessions*** was about ***problem analysis*** and ***modeling***
