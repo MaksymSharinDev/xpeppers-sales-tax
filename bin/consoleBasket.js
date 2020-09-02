@@ -1,20 +1,24 @@
 var inquirer = require('inquirer');
 //inquirer make a prompt like this
 /*
-Basket
------------
-${products}
->Add Product
->Get Receipt
+    Basket
+    -----------
+    ${products}
+    >Add Product
+    >Get Receipt
 */
-    //At Add Product make a prompt like this
+    //At >Add Product ,it make a prompt like this
 /*
+
     format: <n> [imported] product_name at <decimal_price>
+    _
 */
+
 var events = require('events');
 var eventEmitter = new events.EventEmitter();
-
 let lastInputs = "";
+
+//The Interface loop is recursive ( inquirer it’s based on promises )
 function interfaceLoop ( callback ) {
 
         printReceipt = callback
@@ -24,7 +28,8 @@ function interfaceLoop ( callback ) {
                 "-----------\n" +
                 `${lastInputs}`;
         }
-
+        //menu multi-choice interface config
+        console.clear();
         inquirer.prompt([
             {
                 type : "list",
@@ -43,9 +48,11 @@ function interfaceLoop ( callback ) {
             }
         ])
             .then(answers => {
+                //pretty vanilla switch-case
                 switch ( answers.choice ){
                     case "add_product":
                         console.clear();
+                        //input submit interface
                         inquirer.prompt([
                             {
                                 type : "input",
@@ -56,12 +63,14 @@ function interfaceLoop ( callback ) {
                             }
                         ])
                             .then(answers => {
+                                //Here we store the input and return to menu in a recursive fashion
                                 //TODO input ProductLine regex matching
                                 lastInputs += answers.entryString + "\n";
                                 console.clear();
                                 interfaceLoop();
                             })
                             .catch(error => {
+                                //i know i know error handling but... it’s still a small narrow project
                                 console.log(error);
                                 if(error.isTtyError) {
                                     // Prompt couldn't be rendered in the current environment
@@ -70,10 +79,18 @@ function interfaceLoop ( callback ) {
                                 }
                             });
                         break;
+                    //here after x submits we are in scope tunnel
+                    //because of recursive promises, i like to call the next thing
+                    //the "rocket pattern"
+                    //where we send out of scope evil orbit the data to its promised soil
                     case "get_Receipt":
                         try{
                         eventEmitter.emit( "basketSubmit" , lastInputs );
                         }catch{}
+                        //why the try catch? because there is a false alarm about
+                        //printReceipt callback, because the callback is executed
+                        //but strangely "Type error: printReceipt is not a function
+                        //mysteries of javascript lol
                         break;
                 }
             })
@@ -85,7 +102,7 @@ function interfaceLoop ( callback ) {
                 }
                 console.log(error);
             });
-
+            //hey we arrived at the planet of destination
             eventEmitter.on("basketSubmit",( productsString )=> { printReceipt( productsString )} )
         }
 
