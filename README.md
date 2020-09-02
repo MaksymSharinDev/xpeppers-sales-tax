@@ -10,7 +10,8 @@ and  decimal.js calculations.
 It was the most focus and speed intensive challenge that i ever done until now. <br>
 ( joke for AppQualiy final examination Project i have the 50h awake record LOL)   
  
-my Process:
+### my Process:
+
 - ***2 day relaxed sessions*** was about ***problem analysis*** and ***modeling***
 - ***2 day moderate work sessions*** for ***learning on the fly*** nodeJS , 
   resume my javascript competence and mapping the pointers 
@@ -19,13 +20,14 @@ my Process:
   and discipline, the two things that was more ***struggling*** are Promise,events UI related 
   logic and the "float javascript bad thing" refactor discovered at 3th input ***testing***,
   they took me the pair of troubleshooting nights 
-  <br>
-###Architecture
+
+ # Architecture
+
 ![Architecture](./docsMedia/architecture.png)
-<br>
-####Rules, standarts and design good practice 
+
+ #### Rules, standarts and design good practice 
 i tried to keep in mind:
-<br>
+
 - Good Practice Mantra
     - Extensibility
     - Maintainability
