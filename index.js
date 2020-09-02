@@ -13,10 +13,13 @@ let receipt = new Receipt();
 //"Format: [n] [product name] at [price]"
 //inputString = prompt
 
+
+
 taxHandler.parseProducts(
-    "2 book at 12.49\n"+
-    "1 music CD at 14.99\n"+
-    "1 chocolate bar at 0.85"
+    "1 imported bottle of perfume at 27.99\n"+
+                "1 bottle of perfume at 18.99\n"+
+                "1 packet of headache pills at 9.75\n"+
+                "3 box of imported chocolates at 11.25"
 );
 taxHandler.products.forEach(
     product => {
