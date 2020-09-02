@@ -19,10 +19,13 @@ my Process:
   and discipline, the two things that was more ***struggling*** are Promise,events UI related 
   logic and the "float javascript bad thing" refactor discovered at 3th input ***testing***,
   they took me the pair of troubleshooting nights 
+  <br>
 ###Architecture
 ![Architecture](./docsMedia/architecture.png)
+<br>
 ####Rules, standarts and design good practice 
 i tried to keep in mind:
+<br>
 - Good Practice Mantra
     - Extensibility
     - Maintainability
