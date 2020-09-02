@@ -4,23 +4,14 @@ let taxPolicy   =   require("./bin/taxPolicy.js") ;
 let taxHandler = new TaxHandler();
 /*
 let inputString = ´""
-let basket = new Basket();
 let receipt = new Receipt();
 
 */
 //Console Interface for Handling user input
 //"insert Products /n"
 //"Format: [n] [product name] at [price]"
-//inputString = prompt
 
-
-
-taxHandler.parseProducts(
-    "1 imported bottle of perfume at 27.99\n"+
-                "1 bottle of perfume at 18.99\n"+
-                "1 packet of headache pills at 9.75\n"+
-                "3 box of imported chocolates at 11.25"
-);
+taxHandler.parseProducts();
 taxHandler.products.forEach(
     product => {
         taxHandler.applyPolicies( product , taxPolicy() );
