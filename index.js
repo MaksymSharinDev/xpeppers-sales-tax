@@ -15,12 +15,11 @@ consoleBasket.prompt(
 
                 receiptString +=        `${product.quantity} `  +
                                         `${product.name}: `     +
-                                        `${taxHandler.taxedPrice}\n`
-                if( i == (array.length-1) ) {
-                        receiptString +=        `Sales Taxes: ${taxHandler.totTexes }\n`+
-                                                `Total: ${taxHandler.totPrice}`
+                                        `${taxHandler.taxedPrice.toFixed(2)}`+`\n`
+                if( i === (array.length-1) ) {
+                        receiptString +=        `Sales Taxes: ${taxHandler.totTexes.toFixed(2)}\n`+
+                                                `Total: ${taxHandler.totPrice.toFixed(2)}`
                         console.log( receiptString )
-                        return
                 }
         });
 });

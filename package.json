@@ -15,7 +15,6 @@
   },
   "dependencies": {
     "decimal.js": "^10.2.0",
-    "prompts": "^2.3.2",
     "inquirer": "^7.3.3"
   }
 }

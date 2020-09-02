@@ -16,6 +16,8 @@ var eventEmitter = new events.EventEmitter();
 
 let lastInputs = "";
 function interfaceLoop ( callback ) {
+
+        printReceipt = callback
         let textInterface = () =>
         {
             return  "Basket\n" +
@@ -84,9 +86,7 @@ function interfaceLoop ( callback ) {
                 console.log(error);
             });
 
-            eventEmitter.on("basketSubmit",(lastInputs)=> {callback( lastInputs )} )
-
-
+            eventEmitter.on("basketSubmit",( productsString )=> { printReceipt( productsString )} )
         }
 
 exports.prompt = interfaceLoop
