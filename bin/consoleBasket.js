@@ -60,6 +60,7 @@ function interfaceLoop ( callback ) {
                                 interfaceLoop();
                             })
                             .catch(error => {
+                                console.log(error);
                                 if(error.isTtyError) {
                                     // Prompt couldn't be rendered in the current environment
                                 } else {
@@ -68,7 +69,9 @@ function interfaceLoop ( callback ) {
                             });
                         break;
                     case "get_Receipt":
-                        eventEmitter.emit( "basketSubmit");
+                        try{
+                        eventEmitter.emit( "basketSubmit" , lastInputs );
+                        }catch{}
                         break;
                 }
             })
@@ -78,8 +81,12 @@ function interfaceLoop ( callback ) {
                 } else {
                     // Something else when wrong
                 }
+                console.log(error);
             });
-        eventEmitter.on("basketSubmit",()=> (callback( lastInputs ))  )
+
+            eventEmitter.on("basketSubmit",(lastInputs)=> {callback( lastInputs )} )
+
+
         }
 
 exports.prompt = interfaceLoop

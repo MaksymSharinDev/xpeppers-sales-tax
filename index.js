@@ -1,29 +1,30 @@
+var consoleBasket = require("./bin/consoleBasket.js");
 let TaxHandler  =   require("./bin/taxHandler.js");
 let taxPolicy   =   require("./bin/taxPolicy.js") ;
-var consoleBasket = require("./bin/consoleBasket.js");
 let taxHandler = new TaxHandler();
 
 
 consoleBasket.prompt(
     inputString => {
+
+        let receiptString = "";
         taxHandler.parseProducts( inputString );
         taxHandler.products.forEach(
-            product => {
+            (product , i,array ) => {
                 taxHandler.applyPolicies( product , taxPolicy() )
-                /*
-                receipt.addRow(
-                    `${product.quantity} `  +
-                    `${product.name}: `     +
-                    `${product.taxedPrice}`
-                );
-                */
+
+                receiptString +=        `${product.quantity} `  +
+                                        `${product.name}: `     +
+                                        `${taxHandler.taxedPrice}\n`
+                if( i == (array.length-1) ) {
+                        receiptString +=        `Sales Taxes: ${taxHandler.totTexes }\n`+
+                                                `Total: ${taxHandler.totPrice}`
+                        console.log( receiptString )
+                        return
+                }
         });
 });
-/*
-receipt.addRow( `Sales Taxes: ${taxHandler.
-receipt.addRow( `Total: ${taxHandler.
-receipt.print();
-*/
+
 
 
 

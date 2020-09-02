@@ -20,7 +20,7 @@ function taxPolicy(){
                   excludedItemName = whiteList[i];
                   found =
                   taxableItem.name.search( excludedItemName ) === -1  ? false : true
-                  taxableItem.name.search( excludedItemName ), "  " , found  );
+                  //taxableItem.name.search( excludedItemName ), "  " , found  ;
                   if ( found === true ) { return }
                   if ( i === whiteList.length-1  )
                   {

@@ -9,12 +9,14 @@ function TaxHandler() {
     this.parseProducts =
         function (productsString) {
             this.products = [];
-            productsString.split("\n").forEach(
+            productsArray = productsString.split("\n");
+            productsArray.pop();
+            productsArray.forEach(
                 productLine => {
                     this.products.push(
                         {
                             quantity:
-                                new Decimal(  productLine.match(/^(\d*)(?= .*)/g)[0]  ),
+                                new Decimal(  (productLine.match(/^(\d)(?= .*)/g))[0]  ),
                             name:
                                  productLine.match(/(?<= )(.*)(?= at)/g)[0] ,
                             price:
